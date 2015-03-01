@@ -10,7 +10,7 @@
       dependencies[name] = func;
     };
     inject = function (func) {
-      //regex from angular source code
+      //regex from angular source
       var regex =/^function\s*[^\(]*\(\s*([^\)]*)\)/m;
       var args = func.toString().match(regex)[1].replace(/ /g, '').split(',');
       var deps = [];
@@ -39,14 +39,8 @@
   })();
   module.exports = {
     modules: {},
-    module: function (name, dependencies) {
+    module: function (name) {
       myModule.name = name;
-      if (dependencies.length === 0) {
-        return myModule;
-      }
-      for (var i in dependencies) {
-        myModule.dependencies = dependencies;
-      }
       return myModule;
     }
   };
